@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link type="text/css" href="{% static 'short/css/styles.css' %}" rel="stylesheet"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="{% static 'short/images/main.png' %}" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<table class="table-page" border=0 cellpadding="0" cellspacing="0">
+    <tr>
+        <td valign=top>
+            {% block mainmenu %}
+            <div class="header">
+                <ul id="mainmenu" class="mainmenu">
+                    <li class="logo"><a href="{% url 'home'%}">
+                        <div class="logo"></div>
+                    </a></li>
+
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'shortening_link' %}">Shortening Link</a></li>
+                    <li><a href="{% url 'shortened_links' user.username %}">Shortened Links</a></li>
+
+
+                    <li class="last">{{user.username}} | <a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li class="last"><a href="{% url 'sign_in' %}">Sign In</a> | <a href="{% url 'sign_up' %}">Sign
+                        Up</a></li>
+                    {% endif %}
+                </ul>
+                <div class="clear"></div>
+            </div>
+            {% endblock mainmenu %}
+
+
+            <table class="table-content" border=0 cellpadding="0" cellspacing="0">
+                <tr>
+
+                    <td valign="top" class="content">
+
+
+                        <div class="content-text">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- Footer -->
+    <tr>
+        <td valign=top>
+            <div id="footer">
+                <p>short_links</p>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</body>

@@ -1,0 +1,13 @@
+{% extends 'short/base.html' %}
+
+{% block content%}
+
+
+<p class="center-img">
+    <img align="center" src="static/short/images/main.png">
+</p>
+{% for i in links %}
+<p>{{i.new_link}}</p>
+{% endfor%}
+
+{% endblock %}

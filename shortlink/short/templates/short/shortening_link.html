@@ -1,0 +1,25 @@
+{% extends 'short/base.html' %}
+
+{% block content%}
+
+
+<h1>shorting links</h1>
+
+
+<form action="{% url 'shortening_link' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button_cut" type="submit">Cut</button>
+</form>
+
+{% if messages %}
+<h3>New Link:</h3>
+{% for i in messages %}
+<h3>{{i}}</h3>
+
+
+{% endfor %}
+{% endif %}
+
+
+{% endblock %}
